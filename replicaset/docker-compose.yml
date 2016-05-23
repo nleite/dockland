@@ -1,0 +1,30 @@
+version: '2'
+
+services:
+  repl1:
+    image: mongo:3.2
+    container_name: mongod1
+    hostname: mongod1
+    expose: [27000]
+    ports:
+      - 27001:27000
+    entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000", "--storageEngine", "mmapv1"]
+
+
+  repl2:
+    image: mongo:3.2
+    container_name: mongod2
+    hostname: mongod2
+    expose: [27000]
+    ports:
+      - 27002:27000
+    entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000"]
+
+  repl3:
+    image: mongo:3.2
+    container_name: mongod3
+    hostname: mongod3
+    expose: [27000]
+    ports:
+      - 27003:27000
+    entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000"]
