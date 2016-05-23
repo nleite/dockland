@@ -67,11 +67,8 @@ We can then build our own image
 
   - we are not deactivating NUMA and applying other optimizations that might be relevant for MongoDB deployments
 
-Compose
-=======
-
-Compose allow us to set different containers and linked them into deployment stacks.
-Today we are just going to use it for a simple replica set setup.
+Persistency
+===========
 
 A few things we should start considering from this point onwards.
 The beauty of containers is not that you can "just" run processes in an
@@ -85,6 +82,19 @@ But in a state-full scenario, databases and persistency requirements,
 we need to think of how do we make sure that the work we are doing is not going
 to disappear once the container is turn off.
 
+Docker Named Volumes
+--------------------
+
+Don't solve everything but help quite a bit
+
+
+
+Compose
+=======
+
+Compose allow us to set different containers and linked them into deployment stacks.
+Today we are just going to use it for a simple replica set setup.
+
 For these we have a few different options.
 Let's have a look on how to manage containers with `docker-compose`
 
@@ -96,6 +106,8 @@ cat replicaset/docker-compose.yml
 Things that will help!
 ----------------------
 - https://github.com/docker/compose/issues/2434
+- https://github.com/docker/machine/issues/179
+- https://github.com/docker-library/mongo/issues/30
 
 Kubernetes
 ==========

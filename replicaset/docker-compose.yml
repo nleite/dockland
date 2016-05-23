@@ -8,8 +8,11 @@ services:
     expose: [27000]
     ports:
       - 27001:27000
-    entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000", "--storageEngine", "mmapv1"]
-
+    entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000"]
+    #volumes_from:
+    #  - repl1_data
+    volumes:
+      - /tmp/data:/data/db
 
   repl2:
     image: mongo:3.2
@@ -28,3 +31,12 @@ services:
     ports:
       - 27003:27000
     entrypoint: ["/usr/bin/mongod", "--replSet", "COMPOSE", "--port" ,"27000"]
+
+#
+#  repl1_data:
+#    image: centos:7
+#    container_name: repl1_data
+#    command: ["rm", "-rf", "/data/db/*"]
+#    volumes:
+#      - ./repl1_data:/data/db
+#    entrypoint: ["ls", "/data/db"]
